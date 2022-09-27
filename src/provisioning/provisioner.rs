@@ -448,7 +448,9 @@ impl Process {
                 let private_key = private_key
                     .take()
                     .ok_or(ProvisionerError::PrivateKeyMissing)?;
-                let ecdh_secret = private_key.agree(device_public_key, |s| ECDHSecret::new(s))?;
+                let ecdh_secret = private_key
+                    .agree(device_public_key, |s| ECDHSecret::new(s))
+                    .unwrap();
                 let confirmation_salt = confirmation::Input {
                     invite: *invite,
                     capabilities: *capabilities,

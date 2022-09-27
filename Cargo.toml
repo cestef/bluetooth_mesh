@@ -17,7 +17,7 @@ edition = "2018"
 readme = "README.md"
 
 [badges]
-maintenance = {status ="actively-developed"}
+maintenance = { status = "actively-developed" }
 
 [features]
 default = ["full_stack"]
@@ -27,13 +27,19 @@ std = ["serde/std", "rand/std", "btle/std", "ring/std"]
 
 [dependencies]
 # Custom backends built for `bluetooth_mesh`
-btle = {version = "0.1.4", path = "btle", default-features = false, features=["hci"]}
-driver_async = {version = "0.0.3", path="async_driver", default-features = false}
+btle = { version = "0.1.4", git = "https://github.com/AndrewGi/btle", default-features = false, features = [
+    "hci",
+] }
+driver_async = { version = "0.0.3", git = "https://github.com/AndrewGi/async_driver", default-features = false }
 # Common libraries
-serde = {version = "1.0", default-features = false, features = ["derive"], optional = true }
-futures-util = {version = "0.3.8", optional=true, default-features = false, features=["alloc"]}
+serde = { version = "1.0", default-features = false, features = [
+    "derive",
+], optional = true }
+futures-util = { version = "0.3.8", optional = true, default-features = false, features = [
+    "alloc",
+] }
 # Used mostly for crypto key generation
-rand = {version ="0.7", default-features = false}
+rand = { version = "0.7", default-features = false }
 # Crypto Libs
 aes = "0.6"
 cmac = "0.5"

@@ -1,3 +1,5 @@
+use ring::error;
+
 use crate::provisioning::protocol::PublicKey;
 use std::convert::TryInto;
 
@@ -54,7 +56,7 @@ impl PrivateKey {
         self,
         public_key: &PublicKey,
         kdf: F,
-    ) -> Result<D, Error> {
+    ) -> Result<D, error::Unspecified> {
         const ELEM_LEN: usize = 32;
         let mut p_key = [0_u8; ELEM_LEN * 2 + 1];
         p_key[0] = 0x04;
@@ -63,8 +65,8 @@ impl PrivateKey {
         ring::agreement::agree_ephemeral(
             self.key,
             &ring::agreement::UnparsedPublicKey::new(&ring::agreement::ECDH_P256, p_key.as_ref()),
-            Error::EarlyPublicKeyAgreementKey,
             |b| Ok(kdf(b)),
         )
+        .unwrap()
     }
 }
