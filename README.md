@@ -2,6 +2,7 @@
 [![crates.io](https://img.shields.io/crates/v/bluetooth_mesh)](https://crates.io/crates/bluetooth_mesh)
 [![docs.rs](https://docs.rs/bluetooth_mesh/badge.svg)](https://docs.rs/bluetooth_mesh)
 
+## Forked to update the deps
 
 !! WIP and API not stable until version 1.0 !!
 
